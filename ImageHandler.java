@@ -132,9 +132,9 @@ public class ImageHandler {
     public BufferedImage Blur() {
         //make image blur
         float[] matrix = {
-                0.1f, 0.2f, 0.1f,
-                0.2f, 0.4f, 0.2f,
-                0.1f, 0.2f, 0.1f
+                0.05f, 0.15f, 0.05f,
+                0.15f, 0.3f, 0.15f,
+                0.05f, 0.15f, 0.05f
         };
         Kernel kernel = new Kernel(3, 3, matrix);
         ConvolveOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);

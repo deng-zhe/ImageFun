@@ -103,19 +103,19 @@ public class ImageFun extends JFrame {
         sharpenButton.addActionListener(e -> SharpenImage());
         adjustToolBar.add(sharpenButton);
 
-        JButton blurButton = new JButton("Blur");
-        blurButton.addActionListener(e -> BlurImage());
-        adjustToolBar.add(blurButton);
+        //JButton blurButton = new JButton("Blur");
+        //blurButton.addActionListener(e -> BlurImage());
+        //adjustToolBar.add(blurButton);
 
         JButton contrastButton = new JButton("Contrast");
         contrastButton.addActionListener(e -> ContrastImage());
         adjustToolBar.add(contrastButton);
 
-        JButton brightnessButton = new JButton("Brightness");
+        JButton brightnessButton = new JButton("Brighten");
         brightnessButton.addActionListener(e -> BrightImage());
         adjustToolBar.add(brightnessButton);
 
-        JButton darknessButton = new JButton("Enhance");
+        JButton darknessButton = new JButton("Darken");
         darknessButton.addActionListener(e -> DarkImage());
         adjustToolBar.add(darknessButton);
 
@@ -178,7 +178,10 @@ public class ImageFun extends JFrame {
         blurItem.addActionListener(e -> BlurImage());
         JMenuItem contrastItem = new JMenuItem("Contrast");
         contrastItem.addActionListener(e -> ContrastImage());
-        JMenuItem brightnessItem = new JMenuItem("Brightness");
+        JMenuItem brightnessItem = new JMenuItem("Brighten");
+        JMenuItem darkenItem = new JMenuItem("Darken");
+        darkenItem.addActionListener(e -> DarkImage());
+
         brightnessItem.addActionListener(e -> BrightImage());
         JMenuItem enhanceItem = new JMenuItem("Enhance");
         enhanceItem.addActionListener(e -> DarkImage());
@@ -205,9 +208,10 @@ public class ImageFun extends JFrame {
         editMenu.add(resizeItem);
 
         adjustMenu.add(sharpenItem);
-        adjustMenu.add(blurItem);
+        //adjustMenu.add(blurItem);
         adjustMenu.add(contrastItem);
         adjustMenu.add(brightnessItem);
+        adjustMenu.add(darkenItem);
 
         filterMenu.add(SketchItem);
         filterMenu.add(grayItem);
@@ -225,6 +229,11 @@ public class ImageFun extends JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Select a file");
         fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("jpg,png,bmp files", "jpg", "png","bmp"));
+        if (!filePath.isEmpty()) {
+            int Idx=filePath.lastIndexOf("\\");
+            String defaultPath=filePath.substring(0,Idx);
+            fileChooser.setCurrentDirectory(new File(defaultPath));
+        }
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -243,6 +252,7 @@ public class ImageFun extends JFrame {
                 imgHandler = new ImageHandler(image);
                 setTitle("Image Editor--" + filePath);
                 canvas.chgImage(image);
+                canvas.zoom=1;
                 canvas.repaint();
             }
     }
