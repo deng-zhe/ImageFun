@@ -158,7 +158,8 @@ public class ImagePanel extends JPanel {
             }
         }
         Spiral sp = new Spiral(borderAry,x,y);
-        borderAry=sp.run();
+        //borderAry=sp.run();
+        borderAry=sp.Infect();
         selMerge(borderAry);
         return RevByMap();
     }

@@ -15,6 +15,7 @@
 # 3.contributor
 Zhe Deng(Denzel Deng)
 # 4.Release
-1.0.beta 	10/10/2023
+1.0.beta 	10/10/2023  
+1.0.1.beta      10/14/2023
 # 5.contact
 denzeldeng@126.com

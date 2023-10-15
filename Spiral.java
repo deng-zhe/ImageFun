@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class Spiral {
     // find selectd object by traverse the array in traverse order from the pick point
     //set the touched pixel with 2
@@ -7,6 +9,7 @@ public class Spiral {
     public int Width;
     public int Height;
     public int blksize;
+    Stack<Integer> stk;
     public Spiral(int[][] ary,int i,int j)
     {
         blksize=100;
@@ -15,6 +18,34 @@ public class Spiral {
         Height=ary[0].length;
         x=i;
         y=j;
+        stk= new Stack<Integer>();
+        stk.push(x);
+        stk.push(y);
+    }
+    public int[][] Infect()
+    // A fast and exact algorithms
+    {
+        int X,Y;
+        while(!stk.isEmpty())
+        {
+            Y=stk.pop();
+            X=stk.pop();
+            if(X>=0 && X<Width && Y>=0 && Y<Height) {
+                if (borderAry[X][Y] == 1)
+                {
+                    borderAry[X][Y]=2;
+                    stk.push(X+1);
+                    stk.push(Y);
+                    stk.push(X-1);
+                    stk.push(Y);
+                    stk.push(X);
+                    stk.push(Y+1);
+                    stk.push(X);
+                    stk.push(Y-1);
+                }
+            }
+        }
+        return borderAry;
     }
     public int[][] run()
     {
